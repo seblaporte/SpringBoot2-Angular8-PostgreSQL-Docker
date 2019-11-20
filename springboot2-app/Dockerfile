@@ -13,6 +13,11 @@ COPY src /workdir/src
 RUN ./mvnw package -DskipTests
 
 FROM openjdk:11-jre-slim
+
+RUN groupadd -g 999 springboot && \
+    useradd -r -u 999 -g springboot springboot
+USER springboot
+
 COPY --from=BUILDER /workdir/target/*.jar /springboot2-app.jar
 
 EXPOSE 8080
