@@ -1,0 +1,18 @@
+version: "3.0"
+
+services:
+  frontend:
+    ports: 
+      - 8081:80
+
+  backend:
+    ports:
+      - 8082:8080
+    
+  database:
+    ports:
+      - 5432:5432
+
+  reverse-proxy:
+    ports:
+      - 8090:8080

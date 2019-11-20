@@ -1,0 +1,17 @@
+= SpringBoot2-Angular8-PostgreSQL-Docker
+
+Angular 8 app with Spring Boot 2 backend and PostgreSQL database build and deployed with Docker.
+
+image::doc/illustration.png[]
+
+== Usage
+
+. Add 2 entries to your `/etc/hosts`
++
+`127.0.0.1   demo-app.local`
++
+`127.0.0.1   api.demo-app.local`
+. Run with `docker-compose up -d`
+. Go to http://demo-app.local:8080
+
+NOTE: SwaggerUI is available on http://api.demo-app.local:8080/swagger-ui.html
