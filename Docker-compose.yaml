@@ -1,17 +1,11 @@
 version: "3.0"
 
-networks:
-  internal:
-  external:
-
 volumes:
   database:
 
 services:
   frontend:
     build: ./angular8-app
-    networks:
-      - internal
     labels:
       - "traefik.backend=frontend"
       - "traefik.frontend.rule=Host:demo-app.local"
@@ -22,8 +16,6 @@ services:
   
   backend:
     build: ./springboot2-app
-    networks:
-      - internal
     environment:
       - DATABASE_HOSTNAME=database
       - DATABASE_PORT=5432
@@ -37,8 +29,6 @@ services:
     
   database:
     image: postgres:10
-    networks:
-      - internal
     labels:
       - "traefik.enable=false"
     environment:
@@ -49,9 +39,6 @@ services:
 
   reverse-proxy:
     image: traefik:1.7.12
-    networks:
-      - external
-      - internal
     labels:
       - "traefik.enable=false"
     ports:
