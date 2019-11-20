@@ -1,6 +1,6 @@
 = SpringBoot2-Angular8-PostgreSQL-Docker
 
-Angular 8 app with Spring Boot 2 backend and PostgreSQL database build and deployed with Docker.
+Angular 8 app with Spring Boot 2 backend and PostgreSQL database built and deployed with Docker.
 
 image::doc/illustration.png[]
 
