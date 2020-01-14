@@ -16,11 +16,6 @@ services:
   
   backend:
     build: ./springboot2-app
-    environment:
-      - DATABASE_HOSTNAME=database
-      - DATABASE_PORT=5432
-      - DATABASE_USERNAME=${DEMO_APP_DB_USERNAME}
-      - DATABASE_PASSWORD=${DEMO_APP_DB_PASSWORD}
     labels:
       - "traefik.backend=backend"
       - "traefik.frontend.rule=Host:api.demo-app.local"
