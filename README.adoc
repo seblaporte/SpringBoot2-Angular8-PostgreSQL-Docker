@@ -4,7 +4,7 @@ Angular 8 app with Spring Boot 2 backend and PostgreSQL database built and deplo
 
 image::doc/illustration.png[]
 
-== Usage
+== TL;DR
 
 . Add 2 entries to your `/etc/hosts`
 +
@@ -15,3 +15,52 @@ image::doc/illustration.png[]
 . Go to http://demo-app.local:8080
 
 NOTE: SwaggerUI is available on http://api.demo-app.local:8080/swagger-ui.html
+
+== Demo : Build and deploy backend with Docker only
+
+1) Checkout branch `demo-apside-camp`
+
+2) Build backend
+
+[source,bash]
+----
+docker build -t springboot2-app .
+----
+
+3) Start database
+
+[source,bash]
+----
+docker run --name database --rm \
+-e POSTGRES_USER=springboot \
+-e POSTGRES_PASSWORD=changeme \
+postgres:10
+----
+
+4) Get database IP address
+
+`docker inspect database`
+
+NOTE: Find information under `Network / bridge / IPAddress`
+
+5) Start backend
+
+[source,bash]
+----
+docker run --name backend --rm \
+-p 8090:8080 \
+--add-host database:<Adresse IP BDD> \
+springboot2-app
+----
+
+6) Go to SwaggerUI to check
+
+http://localhost:8090/swagger-ui.html#/employee-controller
+
+7) Edit Swagger class configuration
+
+8) Re-build docker image to integrate Swagger changes
+
+NOTE: Docker use cache to rebuild only necessary layers.
+
+9) Re-run the backend to check
