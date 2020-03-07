@@ -8,13 +8,13 @@ image::doc/illustration.png[]
 
 . Add 2 entries to your `/etc/hosts`
 +
-`127.0.0.1   demo-app.local`
+`127.0.0.1   demo-app.127.0.0.1.nip.io`
 +
-`127.0.0.1   api.demo-app.local`
+`127.0.0.1   api.demo-app.127.0.0.1.nip.io`
 . Run with `docker-compose up -d`
-. Go to http://demo-app.local:8080
+. Go to http://demo-app.127.0.0.1.nip.io:8080
 
-NOTE: SwaggerUI is available on http://api.demo-app.local:8080/swagger-ui.html
+NOTE: SwaggerUI is available on http://api.demo-app.127.0.0.1.nip.io:8080/swagger-ui.html
 
 == Demo : Build and deploy backend with Docker only
 

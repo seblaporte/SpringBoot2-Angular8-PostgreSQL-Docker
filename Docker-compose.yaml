@@ -8,7 +8,7 @@ services:
     build: ./angular8-app
     labels:
       - "traefik.backend=frontend"
-      - "traefik.frontend.rule=Host:demo-app.local"
+      - "traefik.frontend.rule=Host:demo-app.127.0.0.1.nip.io"
     depends_on:
       - backend
       - database
@@ -23,7 +23,7 @@ services:
       - DATABASE_PASSWORD=${DEMO_APP_DB_PASSWORD}
     labels:
       - "traefik.backend=backend"
-      - "traefik.frontend.rule=Host:api.demo-app.local"
+      - "traefik.frontend.rule=Host:api.demo-app.127.0.0.1.nip.io"
     links:
       - database
     
