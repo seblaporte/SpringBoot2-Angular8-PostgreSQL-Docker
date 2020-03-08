@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: front-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`demo-app.demo.apside-top.fr`)
+      kind: Rule
+      services:
+        - name: front
+          port: 80

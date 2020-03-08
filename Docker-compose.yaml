@@ -5,7 +5,10 @@ volumes:
 
 services:
   frontend:
-    build: ./angular8-app
+    build:
+      context: ./angular8-app
+      args:
+        - buildtype=build-prod
     labels:
       - "traefik.backend=frontend"
       - "traefik.frontend.rule=Host:demo-app.127.0.0.1.nip.io"
