@@ -6,11 +6,6 @@ image::doc/illustration.png[]
 
 == TL;DR
 
-. Add 2 entries to your `/etc/hosts`
-+
-`127.0.0.1   demo-app.127.0.0.1.nip.io`
-+
-`127.0.0.1   api.demo-app.127.0.0.1.nip.io`
 . Run with `docker-compose up -d`
 . Go to http://demo-app.127.0.0.1.nip.io:8080
 
@@ -18,16 +13,14 @@ NOTE: SwaggerUI is available on http://api.demo-app.127.0.0.1.nip.io:8080/swagge
 
 == Demo : Build and deploy backend with Docker only
 
-1) Checkout branch `demo-apside-camp`
-
-2) Build backend
+1) Build backend
 
 [source,bash]
 ----
-docker build -t springboot2-app .
+docker build -t springboot2-app springboot2-app/
 ----
 
-3) Start database
+2) Start database
 
 [source,bash]
 ----
@@ -37,30 +30,25 @@ docker run --name database --rm \
 postgres:10
 ----
 
-4) Get database IP address
+3) Get database IP address
 
 `docker inspect database`
 
 NOTE: Find information under `Network / bridge / IPAddress`
 
-5) Start backend
+4) Start backend
 
 [source,bash]
 ----
 docker run --name backend --rm \
 -p 8090:8080 \
---add-host database:<Adresse IP BDD> \
+-e DATABASE_HOSTNAME=172.17.0.2 \
+-e DATABASE_PORT=5432 \
+-e DATABASE_USERNAME=springboot \
+-e DATABASE_PASSWORD=changeme \
 springboot2-app
 ----
 
-6) Go to SwaggerUI to check
+5) Go to SwaggerUI to check
 
 http://localhost:8090/swagger-ui.html#/employee-controller
-
-7) Edit Swagger class configuration
-
-8) Re-build docker image to integrate Swagger changes
-
-NOTE: Docker use cache to rebuild only necessary layers.
-
-9) Re-run the backend to check
